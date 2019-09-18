@@ -8,8 +8,6 @@
 
     let dataTarget = targetTab.dataset.target;
 
-    console.dir(targetTab);
-
     this.querySelectorAll('.tabs-active')
       .forEach(activeTabItem => {
         activeTabItem.classList.remove('tabs-active');
