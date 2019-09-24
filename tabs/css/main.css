@@ -48,19 +48,19 @@ body {
   border-right: 1px solid #ccc; 
 }
 
-.tabs-header__tab.tabs-active {
+.tabs-header__tab.tabs_active {
   cursor: default;
 }
 
-.tabs-header__tab.tabs-active:after {
+.tabs-header__tab.tabs_active:after {
   width: 100%;
 }
 
-.tabs-header__tab.tabs-active:hover {
+.tabs-header__tab.tabs_active:hover {
   background: none;
 }
 
-.tabs-header__tab.tabs-active:before {
+.tabs-header__tab.tabs_active:before {
   content: '';
   position: absolute;
   z-index: 3;
@@ -77,6 +77,6 @@ body {
   display: none;
 }
 
-.tabs-panel.tabs-active {
+.tabs-panel.tabs_active {
   display: block; 
 }
