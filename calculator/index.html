@@ -10,9 +10,9 @@
   <meta name="format-detection" content="telephone=no">
   <link rel="stylesheet" href="css/main.css">
 
-    <script>
+    <!-- <script>
         document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
-    </script>
+    </script> -->
 </head>
 
 <body>
@@ -21,7 +21,7 @@
 
       <div class="form-group">
         <label for="creditText" class="form-group__title">Стоимость недвижимости:</label>
-        <input type="text" id="creditText" class="form-group__field" aria-describedby="creditNumberHolder" value="$50,000">
+        <input type="text" id="creditText" class="form-group__field" aria-describedby="creditNumberHolder" value="50 000 $">
         <input type="range" class="form-group__range" id="creditRange" min="0" max="500000" step="100" value="50000">
         <small id="creditNumberHolder" class="form-group__text text_muted">Сумма, которую за вас запратит банк.</small>
       </div>
@@ -29,7 +29,7 @@
 
       <div class="form-group">
         <label for="firstContributionText" class="form-group__title">Первоначальный взнос:</label>
-        <input type="text" id="firstContributionText" class="form-group__field" aria-describedby="firstContributionNumberHolder" value="$500">
+        <input type="text" id="firstContributionText" class="form-group__field" aria-describedby="firstContributionNumberHolder" value="500 $">
         <input type="range" class="form-group__range" id="firstContributionRange" min="0" max="500000" value="500" step="100">
         <small id="firstContributionNumberHolder" class="form-group__text text_muted">Ваш первоначальный взнос в качестве погашения кредита</small>
       </div>
@@ -66,7 +66,7 @@
     </form>
   </div>
 
-  <script src="js.js"></script>
+  <script src="js/js.js"></script>
 </body>
 
 </html>
