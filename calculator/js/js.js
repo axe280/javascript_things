@@ -2,8 +2,6 @@
 const CREDIT_MIN = 0;
 const CREDIT_MAX = 500000;
 
-const CONTRIBUTION_MAX = 500000;
-
 const RETURN_MIN = 0;
 const RETURN_MAX = 30;
 
@@ -24,96 +22,126 @@ const formatterCurrency = new Intl.NumberFormat('ru', {
   minimumFractionDigits: 0
 });
 
-
-creditText.addEventListener('input', function(event) {
-  let number = filterInputValue(this, 0);
-
-  number = sortInputValue(number, CREDIT_MIN, CREDIT_MAX);
-
-  creditRange.value = number;
-  number = formatterNumber.format(number);
-  this.value = number;
-});
-
-creditText.addEventListener('focus', focusHandleCurrency);
-creditText.addEventListener('blur', blurHandleCurrency);
-
-creditRange.addEventListener('input', function(event) {
-  creditText.value = formatterCurrency.format(parseInt(this.value));
-});
+const formatterYears = {
+  format(number) {
+    return `${number} ${formatYears(number, ['лет', 'год', 'года'])}`
+  }
+};
 
 
-firstContributionText.addEventListener('input', function(event) {
-  let number = filterInputValue(this, 0);
+setHandlersForInput(
+  creditText,
+  creditRange,
+  CREDIT_MIN,
+  CREDIT_MAX,
+  formatterCurrency
+);
 
-  number = sortInputValue(number, null, CONTRIBUTION_MAX);
+setHandlersForInput(
+  firstContributionText,
+  firstContributionRange,
+  CREDIT_MIN,
+  CREDIT_MAX,
+  formatterCurrency
+);
 
-  firstContributionRange.value = number;
-  number = formatterNumber.format(number);
-  this.value = number;
-});
+setHandlersForInput(
+  returnPeriodText,
+  returnPeriodRange,
+  RETURN_MIN,
+  RETURN_MAX,
+  formatterYears
+);
 
-firstContributionText.addEventListener('focus', focusHandleCurrency);
-firstContributionText.addEventListener('blur', blurHandleCurrency);
+setReaction(
+  creditText,
+  creditRange,
+  firstContributionText,
+  firstContributionRange,
+  returnPeriodText,
+  returnPeriodRange,
+  mainProcess
+);
 
-firstContributionRange.addEventListener('input', function(event) {
-  firstContributionText.value = formatterCurrency.format(parseInt(this.value));
-});
-
-
-returnPeriodText.addEventListener('input', function(event) {
-  let number = filterInputValue(this, 0);
-
-  number = sortInputValue(number, RETURN_MIN, RETURN_MAX);
-
-  returnPeriodRange.value = number;
-  this.value = number;
-});
-
-returnPeriodText.addEventListener('focus', focusHandleCurrency);
-
-returnPeriodText.addEventListener('blur', function(event) {
-  let number = filterInputValue(this, 0);
-  this.value = number + ' лет';
-});
-
-returnPeriodRange.addEventListener('input', function(event) {
-  returnPeriodText.value = parseInt(this.value) + ' лет';
-});
+mainProcess();
 
 
-function focusHandleCurrency(event) {
-  let number = filterInputValue(this, 0);
-  this.value = formatterNumber.format(number);
-}
+function setHandlersForInput(textElement, rangeElement, min, max, goalFormatter) {
+  textElement.addEventListener('input', textInputHandler);
+  textElement.addEventListener('focus', textFocusHandler);
+  textElement.addEventListener('blur', textBlurHandler);
 
-function blurHandleCurrency(event) {
-  let number = filterInputValue(this, 0);
-  this.value = formatterCurrency.format(number);
-}
+  rangeElement.addEventListener('input', rangeInputHandler);
 
-function filterInputValue(element = null, number = 0) {
-  for (const letter of element.value) {
-    if ('0123456789'.includes(letter)) {
-      number += letter;
+
+  function textInputHandler() {
+    let number = filterToNumberValue(this, 0);
+
+    number = sortMinMaxNumber(number, min, max);
+
+    rangeElement.value = number;
+    number = formatterNumber.format(number);
+    this.value = number;
+  }
+
+  function textFocusHandler() {
+    let number = filterToNumberValue(this, 0);
+    this.value = formatterNumber.format(number);
+  }
+
+  function textBlurHandler() {
+    let number = filterToNumberValue(this, 0);
+    this.value = goalFormatter.format(number);
+  }
+
+  function rangeInputHandler() {
+    textElement.value = goalFormatter.format(this.value);
+  }
+
+  function filterToNumberValue(element = null, number = 0) {
+    for (const letter of element.value) {
+      if ('0123456789'.includes(letter)) {
+        number += letter;
+      }
     }
+
+    number = parseInt(number);
+
+    return number;
   }
-
-  number = parseInt(number);
-
-  return number;
 }
 
-function sortInputValue(number, min, max) {
-  if (min && number < min) {
-    return number = min;
-  }
 
-  if (max && number > max) {
-    return number = max;
-  }
+function setReaction(...args) {
+  const handler = args.splice(-1)[0];
 
-  return number;
+  for (const element of args) {
+    element.addEventListener('input', function(event) {
+      handler.call(this, event, args.slice());
+    });
+  }
 }
+
+
+function mainProcess() {
+  const credit = parseInt(creditRange.value);
+  const firstContribution = parseInt(firstContributionRange.value);
+  const returnPeriod = parseInt(returnPeriodRange.value);
+
+  const percent = 10;
+  document.querySelector('#percentNumber').value = `${percent} %`;
+
+  const subpayment = credit * percent / 100;
+  document.querySelector('#subpayment').textContent = formatterCurrency.format(subpayment);
+
+  let commonDebit = credit + subpayment;
+  document.querySelector('#common').textContent = formatterCurrency.format(commonDebit);
+
+  const payment = (credit - firstContribution) / (returnPeriod * 12);
+  document.querySelector('#payment').textContent = formatterCurrency.format(payment);
+}
+
+
+
 
 
