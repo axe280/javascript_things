@@ -27,7 +27,7 @@ class Tabs {
 
 document.querySelectorAll('.tabs-wrapper')
   .forEach(tabComponent => {
-    const tab = new Tabs(tabComponent);
+    new Tabs(tabComponent);
   });
 
 
