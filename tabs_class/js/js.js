@@ -1,7 +1,7 @@
 'use strict';
 
 class Tabs {
-  constructor(wrapper, ) {
+  constructor(wrapper) {
     this.wrapper = wrapper;
 
     this.wrapper.addEventListener('click', this.clickTab.bind(this));
