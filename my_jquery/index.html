@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Title</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+  <meta name="format-detection" content="telephone=no">
+
+  <style>
+    body {
+      font-family: serif;
+      font-size: 16px;
+      line-height: 24px;
+      padding: 50px;
+    }
+
+    .item {
+      display: inline-block;
+      vertical-align: top;
+      margin: 20px;
+      width: 100px;
+      height: 100px;
+      padding: 20px;
+      border: 1px solid #000;
+    }
+
+    .item_active {
+      border-color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="item-wrapp">
+    <div class="item">toggle class</div>
+    <div class="item item_active">toggle class</div>
+    <div class="item">
+      <span class="item-inner">toggle class</span>
+    </div>
+    <div class="item">toggle class</div>
+    <div class="item">toggle class</div>
+  </div>
+
+
+  <script src="js/core.js"></script>
+  <script src="js/js.js"></script>
+
+</body>
+
+</html>
