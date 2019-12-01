@@ -1,0 +1,16 @@
+body {
+  font-family: sans-serif; 
+  font-size: 16px;
+  line-height: 24px;
+  color: #444;
+  padding: 30px;
+}
+
+.container {
+  padding: 40px;
+}
+
+.txt-type .txt {
+  border-right: 1px solid #777;
+}
+
