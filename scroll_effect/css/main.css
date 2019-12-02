@@ -1,0 +1,58 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif; 
+  font-size: 16px;
+  line-height: 24px;
+  color: #444;
+  padding: 0;
+  margin: 0;
+}
+
+section {
+  height: 100%;
+  width: 100%;
+}
+
+.dark-bg {
+  background-color: #ccc;
+}
+
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 100px 50px;
+  text-align: center;
+}
+
+.flex {
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex__inner {
+  width: 46%;
+  text-align: left;
+}
+
+.box {
+  height: 300px;
+  background-color: #000;
+}
+
+.intro-block {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.5s all ease-in-out;
+}
+
+.intro_appear {
+  opacity: 1;
+  transform: translateY(0);
+}
+

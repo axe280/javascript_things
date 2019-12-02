@@ -8,8 +8,8 @@ class TypeWriter {
     this.wordIndex = 0;
     this.wait = parseInt(wait, 10);
 
-    this.type();
     this.isDeleting = false;
+    this.type();
   }
 
   type() {
@@ -33,9 +33,9 @@ class TypeWriter {
     // if word is complete
     if (!this.isDeleting && this.txt === fullTxt) {
       typeSpeed = this.wait;
-
       this.isDeleting = true;
-    } else if (this.isDeleting && this.txt === '') {
+    }
+    else if (this.isDeleting && this.txt === '') {
       this.isDeleting = false;
 
       this.wordIndex++;
