@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="format-detection" content="telephone=no">
+</head>
+
+<body>
+  <div class="site-wrapper">
+
+    <!-- header -->
+    <header class="header" id="header">
+      <div class="container">
+
+        <div class="logo">
+          <a href="preview.html">
+            <img src="assets/img/logo.png" alt="logo"/>
+          </a>
+        </div>
+
+        <div class="head-menu">
+          <div class="burger-menu">
+            <div class="burger-menu-box">
+              <div class="burger-menu-inner"></div>
+            </div>
+          </div>
+
+          <div class="menu-wrapper-fixed">
+            <div class="menu-open-wrapper">
+              <nav class="header-nav">
+                <ul class="menu">
+                  <li class="menu-item">
+                    <a class="menu-item__link" href="#">Home</a>
+                  </li>
+                  <li class="menu-item">
+                    <span
+                      class="menu-item__link menu-item__link_dd"
+                      data-add-active="toggleParent">
+                    Service</span>
+
+                    <ul class="menu-dd">
+                      <li class="menu-dd-item">
+                        <a class="menu-dd-item__link" href="#">Special</a>
+                      </li>
+                      <li class="menu-dd-item">
+                        <a class="menu-dd-item__link" href="#">Links</a>
+                      </li>
+                      <li class="menu-dd-item">
+                        <a class="menu-dd-item__link" href="#">More</a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu-item">
+                    <a class="menu-item__link" href="#">Company</a>
+                  </li>
+                  <li class="menu-item">
+                    <a class="menu-item__link" href="#">Contacts</a>
+                  </li>
+                  <li class="menu-item">
+                    <a class="menu-item__link" href="#">Events</a>
+                  </li>
+                  <li class="menu-item">
+                    <a class="menu-item__link" href="#">About</a>
+                  </li>
+                  <li class="menu-item">
+                    <a class="menu-item__link" href="#">Contacts</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </header>
+    <!-- end header -->
+
+
+    <main class="main">
+
+      <div id="app">
+        <div class="container">
+          <form action="#" class="form-component" v-if="showForm">
+            <h2>Form</h2>
+            <div class="form-group">
+              <label class="field-item">
+                <div class="field-item__label">Email</div>
+                <div class="field-item__field">
+                  <input type="email" v-model="formData.email" />
+                </div>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="field-item">
+                <div class="field-item__label">First Name</div>
+                <div class="field-item__field">
+                  <input type="text" v-model="formData.firstName" />
+                </div>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="field-item">
+                <div class="field-item__label">Last Name</div>
+                <div class="field-item__field">
+                  <input type="text" v-model="formData.lastName" />
+                </div>
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label class="field-item">
+                <div class="field-item__label">phone</div>
+                <div class="field-item__field">
+                  <input type="tel" v-model="formData.phone" />
+                </div>
+              </label>
+            </div>
+
+            <div class="add-guest-bl">
+              Guests 
+              <button 
+                type="button"
+                class="btn btn_md"
+                v-on:click="onAddGuest"
+              >+</button>
+            </div>
+
+            <div class="guest-form">
+              <div 
+                class="form-group"
+                v-for="(item, index) in formGuestsCounter"
+                v-bind:key="index"
+              >
+                <label class="field-item">
+                  <div
+                    class="field-item__label"
+                    v-on:dblclick="onDeleteGuest"
+                  >Guest {{ item }}</div>
+                  <div class="field-item__field">
+                    <input 
+                      type="text"
+                      v-model="formGuests[index]"
+                    />
+                  </div>
+                </label>
+              </div>
+            </div>
+            <hr>
+            <br>
+            <button 
+              class="btn btn_md btn_max"
+              type="submit"
+              v-on:click="onCreateTable"
+            >Send Data</button>
+          </form>
+
+          <div class="table-component" v-else>
+            <h2>All done!</h2>
+            <table>
+              <tr>
+                <td>email</td>
+                <td>{{ formData.email }}</td>
+              </tr>
+              <tr>
+                <td>name</td>
+                <td>{{ fullName }}</td>
+              </tr>
+              <tr>
+                <td>phone</td>
+                <td>{{ formData.phone }}</td>
+              </tr>
+              <tr>
+                <td>guests</td>
+                <td>
+                  <table>
+                    <tr
+                      v-for="guest in formGuests"
+                      v-bind:key="guest"
+                    >
+                      <td>{{ guest }}</td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+
+
+  <!-- footer -->
+  <footer class="footer" id="footer">
+    <div class="container">
+      <span class="copy">Design by Axe</span>
+    </div>
+  </footer>
+  <!-- end footer -->
+</body>
+
+</html>
