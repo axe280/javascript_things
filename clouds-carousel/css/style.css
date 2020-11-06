@@ -1,0 +1,52 @@
+body {
+  background: #f3f3f3;
+  margin: 0px;
+  padding: 0px;
+  font-family: Verdana;
+}
+
+img {
+  max-width: 100%;
+}
+
+.clouds-carousel {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 320px;
+  height: 490px;
+  margin: 40px auto;
+}
+
+.clouds-carousel div {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background-color: #ccc;
+  transition: 1s ease-in;
+}
+
+.clouds-carousel div:nth-child(1) {
+  transform: translate(0, 0);
+}
+
+.clouds-carousel div:nth-child(2) {
+  transform: translate(170px, 0);
+}
+
+.clouds-carousel div:nth-child(3) {
+  transform: translate(170px, 170px);
+}
+
+.clouds-carousel div:nth-child(4) {
+  transform: translate(170px, 340px);
+}
+
+.clouds-carousel div:nth-child(5) {
+  transform: translate(0, 340px);
+}
+
+.clouds-carousel div:nth-child(6) {
+  transform: translate(0, 170px);
+}
